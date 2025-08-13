@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>good-fast-cheap</title>
+</head>
+<body>
+<h1>Pick two:</h1>
+<label><input id="tot"   type="checkbox"> GOOD</label><br><br>
+<label><input id="re"    type="checkbox"> CHEAP</label><br><br>
+<label><input id="nhanh" type="checkbox"> FAST</label>
+<script>
+    const tot   = document.getElementById('tot');
+    const re    = document.getElementById('re');
+    const nhanh = document.getElementById('nhanh');
+    [tot, re, nhanh].forEach(el => {
+        el.addEventListener('change', () => apDungQuyTac(el.id));
+    });
+    function apDungQuyTac(vuaDoi) {
+        if (tot.checked && re.checked && nhanh.checked) {
+            if (vuaDoi === 'tot') {
+                if (re.checked) {
+                    if (nhanh.checked) re.checked = false;
+                }
+            } else if (vuaDoi === 're') {
+                if (tot.checked) {
+                    if (nhanh.checked) nhanh.checked = false;
+                }
+            } else {
+                if (tot.checked) {
+                    if (re.checked) tot.checked = false;
+                }
+            }
+        } else {
+            if (tot.checked) {
+                if (re.checked) {
+                    nhanh.checked = false;
+                } else if (nhanh.checked) {
+                    re.checked = false;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
